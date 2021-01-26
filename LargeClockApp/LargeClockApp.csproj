@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
+    <ApplicationIcon>clock__1__lLX_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

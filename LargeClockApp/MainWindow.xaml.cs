@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace LargeClockApp
@@ -85,19 +76,19 @@ namespace LargeClockApp
                     break;
                 case "Red":
                     clockLabel.Foreground = Brushes.Red;
-                    BlackText.IsChecked = true;
+                    RedText.IsChecked = true;
                     break;
                 case "Green":
                     clockLabel.Foreground = Brushes.GreenYellow;
-                    BlackText.IsChecked = true;
+                    GreenText.IsChecked = true;
                     break;
                 case "Blue":
                     clockLabel.Foreground = Brushes.DeepSkyBlue;
-                    BlackText.IsChecked = true;
+                    BlueText.IsChecked = true;
                     break;
                 case "Pink":
                     clockLabel.Foreground = Brushes.Pink;
-                    BlackText.IsChecked = true;
+                    PinkText.IsChecked = true;
                     break;
             }
         }
@@ -236,6 +227,11 @@ namespace LargeClockApp
             ClockSettings.Default.Save();
 
             UpdateTextSize();
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

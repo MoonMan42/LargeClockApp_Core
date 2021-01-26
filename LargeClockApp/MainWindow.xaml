@@ -40,6 +40,7 @@
                         <MenuItem x:Name="TextSize120" Header="120%" Click="TextSizeChange_Click" />
                         <MenuItem x:Name="TextSize150" Header="150%" Click="TextSizeChange_Click" />
                     </MenuItem>
+                    <MenuItem Header="Exit" Click="Close_Click"/>
                 </ContextMenu>
             </Label.ContextMenu>
         </Label>
