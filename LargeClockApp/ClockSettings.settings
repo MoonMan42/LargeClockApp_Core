@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LargeClockApp" GeneratedClassName="ClockSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ClockFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">12-hr</Value>
+    </Setting>
+    <Setting Name="TextColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="BackgroundColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Transparent</Value>
+    </Setting>
+    <Setting Name="TextSize" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TextSize100</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
