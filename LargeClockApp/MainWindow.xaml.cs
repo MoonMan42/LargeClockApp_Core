@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,6 +21,9 @@ namespace LargeClockApp
         private string backgroundColor;
         private string textSize;
 
+        private int distractionInterval = 1;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +35,23 @@ namespace LargeClockApp
             UpdateTextSize();
 
             DisplayClock();
+
+            //DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            //dispatcherTimer.Tick += new EventHandler(PlayDistraction_Tick);
+            //dispatcherTimer.Interval = new TimeSpan(distractionInterval, 0, 0);
+            //dispatcherTimer.Start();
+
+
         }
+
+        //private void PlayDistraction_Tick(object sender, EventArgs e)
+        //{
+        //    Random gen = new Random();
+        //    distractionInterval = gen.Next(1, 4); // gens a number from 1 to 3
+
+        //    SoundPlayer player = new SoundPlayer("./AudioResources/Quack.wav");
+        //    player.Play();
+        //}
 
         /// <summary>
         /// Set timer for clock
@@ -42,7 +63,10 @@ namespace LargeClockApp
                 {
                     clockLabel.Content = DateTime.Now.ToString(format);
                 }, this.Dispatcher);
+
         }
+
+
 
         /// <summary>
         /// Update the Clock format
@@ -67,7 +91,6 @@ namespace LargeClockApp
         private void UpdateTextColor()
         {
             textColor = ClockSettings.Default.TextColor;
-
             switch (textColor)
             {
                 case "Black":
@@ -107,6 +130,10 @@ namespace LargeClockApp
                     clockLabel.Background = Brushes.Black;
                     BlackBg.IsChecked = true;
                     break;
+                case "Yellow":
+                    clockLabel.Background = Brushes.LightGoldenrodYellow;
+                    YellowBg.IsChecked = true;
+                    break;
                 case "White":
                     clockLabel.Background = Brushes.White;
                     WhiteBg.IsChecked = true;
@@ -140,7 +167,7 @@ namespace LargeClockApp
                     break;
                 case "TextSize150":
                     clockLabel.FontSize = 150;
-                    TextSize80.IsChecked = true;
+                    TextSize150.IsChecked = true;
                     break;
             }
         }
@@ -190,6 +217,12 @@ namespace LargeClockApp
             GreenText.IsChecked = false;
             BlueText.IsChecked = false;
             PinkText.IsChecked = false;
+            CustomText.IsChecked = false;
+
+            if (selectedColor.Header.ToString() == "Custom")
+            {
+                ColorDialog
+            }
 
             ClockSettings.Default.TextColor = selectedColor.Header.ToString();
             ClockSettings.Default.Save();
@@ -204,6 +237,7 @@ namespace LargeClockApp
             // clear all option
             TranseparentBg.IsChecked = false;
             BlackBg.IsChecked = false;
+            YellowBg.IsChecked = false;
             WhiteBg.IsChecked = false;
             PinkBg.IsChecked = false;
 
@@ -233,5 +267,6 @@ namespace LargeClockApp
         {
             Close();
         }
+
     }
 }

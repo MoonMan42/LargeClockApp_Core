@@ -11,7 +11,7 @@
         Topmost="True" 
         Background="Transparent"
         MouseDown="Window_MouseDown" 
-        Height="200" Width="650">
+        Height="200" Width="800">
     <StackPanel>
         <Label x:Name="clockLabel" Content="00:00:00 TT" FontSize="100" FontFamily="Calibri" Foreground="Black" FontWeight="Bold"
                    HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent">
@@ -21,16 +21,18 @@
                         <MenuItem x:Name="Item12hr" Header="12-hr" Click="SetClockFormat_Click"/>
                         <MenuItem x:Name="Item24hr" Header="24-hr" Click="SetClockFormat_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Text Color">
+                    <MenuItem x:Name="TextColorMenu" Header="Text Color" Click="ChangeTextColor_Click">
                         <MenuItem x:Name="BlackText" Header="Black" Click="ChangeTextColor_Click"/>
                         <MenuItem x:Name="RedText" Header="Red" Click="ChangeTextColor_Click"/>
                         <MenuItem x:Name="GreenText" Header="Green" Click="ChangeTextColor_Click"/>
                         <MenuItem x:Name="BlueText" Header="Blue" Click="ChangeTextColor_Click"/>
                         <MenuItem x:Name="PinkText" Header="Pink" Click="ChangeTextColor_Click"/>
+                        <MenuItem x:Name="CustomText" Header="Custom" Click="ChangeTextColor_Click"/>
                     </MenuItem>
                     <MenuItem Header="Background Color">
                         <MenuItem x:Name="TranseparentBg" Header="Transparent" Click="ChangeBackgroundColor_Click"/>
                         <MenuItem x:Name="BlackBg" Header="Black" Click="ChangeBackgroundColor_Click"/>
+                        <MenuItem x:Name="YellowBg" Header="Yellow" Click="ChangeBackgroundColor_Click"/>
                         <MenuItem x:Name="WhiteBg" Header="White" Click="ChangeBackgroundColor_Click"/>
                         <MenuItem x:Name="PinkBg" Header="Pink" Click="ChangeBackgroundColor_Click"/>
                     </MenuItem>

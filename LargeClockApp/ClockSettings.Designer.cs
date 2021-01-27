@@ -70,5 +70,29 @@ namespace LargeClockApp {
                 this["TextSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomTextColor {
+            get {
+                return ((string)(this["CustomTextColor"]));
+            }
+            set {
+                this["CustomTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomeBgColor {
+            get {
+                return ((string)(this["CustomeBgColor"]));
+            }
+            set {
+                this["CustomeBgColor"] = value;
+            }
+        }
     }
 }
