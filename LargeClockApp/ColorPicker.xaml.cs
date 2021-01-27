@@ -17,6 +17,16 @@ namespace LargeClockApp
             InitializeComponent();
 
             _selection = selection;
+
+
+            if (_selection == "text")
+            {
+                colorPicker.SelectedColor = (Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomTextColor);
+            }
+            else if (_selection == "bg")
+            {
+                colorPicker.SelectedColor = (Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomeBgColor);
+            }
         }
 
 
