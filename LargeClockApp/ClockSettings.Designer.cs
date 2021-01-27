@@ -73,7 +73,7 @@ namespace LargeClockApp {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFFFFFFF")]
         public string CustomTextColor {
             get {
                 return ((string)(this["CustomTextColor"]));
@@ -85,7 +85,7 @@ namespace LargeClockApp {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
         public string CustomeBgColor {
             get {
                 return ((string)(this["CustomeBgColor"]));

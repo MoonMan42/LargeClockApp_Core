@@ -15,10 +15,10 @@
       <Value Profile="(Default)">TextSize100</Value>
     </Setting>
     <Setting Name="CustomTextColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#FFFFFFFF</Value>
     </Setting>
     <Setting Name="CustomeBgColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#FF000000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

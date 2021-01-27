@@ -21,7 +21,7 @@
                         <MenuItem x:Name="Item12hr" Header="12-hr" Click="SetClockFormat_Click"/>
                         <MenuItem x:Name="Item24hr" Header="24-hr" Click="SetClockFormat_Click"/>
                     </MenuItem>
-                    <MenuItem x:Name="TextColorMenu" Header="Text Color" Click="ChangeTextColor_Click">
+                    <MenuItem x:Name="TextColorMenu" Header="Text Color" >
                         <MenuItem x:Name="BlackText" Header="Black" Click="ChangeTextColor_Click"/>
                         <MenuItem x:Name="RedText" Header="Red" Click="ChangeTextColor_Click"/>
                         <MenuItem x:Name="GreenText" Header="Green" Click="ChangeTextColor_Click"/>
@@ -35,6 +35,7 @@
                         <MenuItem x:Name="YellowBg" Header="Yellow" Click="ChangeBackgroundColor_Click"/>
                         <MenuItem x:Name="WhiteBg" Header="White" Click="ChangeBackgroundColor_Click"/>
                         <MenuItem x:Name="PinkBg" Header="Pink" Click="ChangeBackgroundColor_Click"/>
+                        <MenuItem x:Name="CustomBg" Header="Custom" Click="ChangeBackgroundColor_Click"/>
                     </MenuItem>
                     <MenuItem Header="Font Size">
                         <MenuItem x:Name="TextSize80" Header="80%" Click="TextSizeChange_Click" />

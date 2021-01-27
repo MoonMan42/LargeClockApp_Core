@@ -23,7 +23,7 @@ namespace LargeClockApp
 
         private int distractionInterval = 1;
 
-
+        public string customColor;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,14 +44,7 @@ namespace LargeClockApp
 
         }
 
-        //private void PlayDistraction_Tick(object sender, EventArgs e)
-        //{
-        //    Random gen = new Random();
-        //    distractionInterval = gen.Next(1, 4); // gens a number from 1 to 3
 
-        //    SoundPlayer player = new SoundPlayer("./AudioResources/Quack.wav");
-        //    player.Play();
-        //}
 
         /// <summary>
         /// Set timer for clock
@@ -88,7 +81,7 @@ namespace LargeClockApp
             }
         }
 
-        private void UpdateTextColor()
+        public void UpdateTextColor()
         {
             textColor = ClockSettings.Default.TextColor;
             switch (textColor)
@@ -113,10 +106,15 @@ namespace LargeClockApp
                     clockLabel.Foreground = Brushes.Pink;
                     PinkText.IsChecked = true;
                     break;
+                case "Custom":
+                    clockLabel.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomTextColor));
+                    CustomText.IsChecked = true;
+                    break;
+
             }
         }
 
-        private void UpdateBgColor()
+        public void UpdateBgColor()
         {
             backgroundColor = ClockSettings.Default.BackgroundColor;
 
@@ -141,6 +139,10 @@ namespace LargeClockApp
                 case "Pink":
                     clockLabel.Background = Brushes.Pink;
                     PinkBg.IsChecked = true;
+                    break;
+                case "Custom":
+                    clockLabel.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomeBgColor));
+                    CustomBg.IsChecked = true;
                     break;
             }
 
@@ -221,11 +223,20 @@ namespace LargeClockApp
 
             if (selectedColor.Header.ToString() == "Custom")
             {
-                ColorDialog
+                ColorPicker colorPicker = new ColorPicker("text");
+                colorPicker.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                colorPicker.Owner = this;
+                colorPicker.Show();
+            }
+            else
+            {
+                ClockSettings.Default.CustomTextColor = "#FF000000";
+                ClockSettings.Default.Save();
             }
 
             ClockSettings.Default.TextColor = selectedColor.Header.ToString();
             ClockSettings.Default.Save();
+
 
             UpdateTextColor();
         }
@@ -240,6 +251,20 @@ namespace LargeClockApp
             YellowBg.IsChecked = false;
             WhiteBg.IsChecked = false;
             PinkBg.IsChecked = false;
+            CustomBg.IsChecked = false;
+
+            if (selectedBg.Header.ToString() == "Custom")
+            {
+                ColorPicker colorPicker = new ColorPicker("bg");
+                colorPicker.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                colorPicker.Owner = this;
+                colorPicker.Show();
+            }
+            else
+            {
+                ClockSettings.Default.CustomeBgColor = "#FF000000";
+                ClockSettings.Default.Save();
+            }
 
             ClockSettings.Default.BackgroundColor = selectedBg.Header.ToString();
             ClockSettings.Default.Save();
@@ -267,6 +292,17 @@ namespace LargeClockApp
         {
             Close();
         }
+
+
+
+        //private void PlayDistraction_Tick(object sender, EventArgs e)
+        //{
+        //    Random gen = new Random();
+        //    distractionInterval = gen.Next(1, 4); // gens a number from 1 to 3
+
+        //    SoundPlayer player = new SoundPlayer("./AudioResources/Quack.wav");
+        //    player.Play();
+        //}
 
     }
 }
