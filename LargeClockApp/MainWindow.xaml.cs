@@ -39,8 +39,7 @@ namespace LargeClockApp
             DisplayClock();
 
 
-            // repeating alarm 
-            //SetRepeatingAlarm();
+
 
         }
 
@@ -54,6 +53,10 @@ namespace LargeClockApp
             {
                 dispatcherTimer.Start();
 
+            }
+            else
+            {
+                dispatcherTimer.Stop();
             }
         }
 
