@@ -21,9 +21,11 @@ namespace LargeClockApp
         private string backgroundColor;
         private string textSize;
 
-        private int distractionInterval = 1;
+        private int repeatinterval = 10; // minutes
+        private bool IsAlarmEnabled = false;
 
         public string customColor;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,12 +38,23 @@ namespace LargeClockApp
 
             DisplayClock();
 
-            //DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            //dispatcherTimer.Tick += new EventHandler(PlayDistraction_Tick);
-            //dispatcherTimer.Interval = new TimeSpan(distractionInterval, 0, 0);
-            //dispatcherTimer.Start();
 
+            // repeating alarm 
+            //SetRepeatingAlarm();
 
+        }
+
+        private void SetRepeatingAlarm()
+        {
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(PlayAlarm_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, repeatinterval, 0);
+
+            if (IsAlarmEnabled)
+            {
+                dispatcherTimer.Start();
+
+            }
         }
 
 
@@ -80,6 +93,7 @@ namespace LargeClockApp
                     break;
             }
         }
+
 
         public void UpdateTextColor()
         {
@@ -209,6 +223,44 @@ namespace LargeClockApp
             UpdateClockFormat();
         }
 
+        private void ChangeAlarmTime_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem selectedAlarmTime = sender as MenuItem;
+
+            // clear all options
+            T10Mins.IsChecked = false;
+            T15Mins.IsChecked = false;
+            T20Mins.IsChecked = false;
+            DisabledAlarm.IsChecked = false;
+
+            // enable alarm
+            IsAlarmEnabled = true;
+
+            switch (selectedAlarmTime.Name)
+            {
+                case "T10Mins":
+                    repeatinterval = 10;
+                    T10Mins.IsChecked = true;
+                    break;
+                case "T15Mins":
+                    repeatinterval = 15;
+                    T15Mins.IsChecked = true;
+                    break;
+                case "T20Mins":
+                    repeatinterval = 20;
+                    T20Mins.IsChecked = true;
+                    break;
+                case "DisabledAlarm":
+                    DisabledAlarm.IsChecked = true;
+                    IsAlarmEnabled = false;
+                    break;
+            }
+
+            // set alarm
+            SetRepeatingAlarm();
+
+        }
+
         private void ChangeTextColor_Click(object sender, RoutedEventArgs e)
         {
             MenuItem selectedColor = sender as MenuItem;
@@ -294,15 +346,14 @@ namespace LargeClockApp
         }
 
 
+        #region Sound Effects
+        private void PlayAlarm_Tick(object sender, EventArgs e)
+        {
+            string audioSource = "./AudioResources/Quack.wav";
+            SoundPlayer player = new SoundPlayer(audioSource);
+            player.Play();
+        }
 
-        //private void PlayDistraction_Tick(object sender, EventArgs e)
-        //{
-        //    Random gen = new Random();
-        //    distractionInterval = gen.Next(1, 4); // gens a number from 1 to 3
-
-        //    SoundPlayer player = new SoundPlayer("./AudioResources/Quack.wav");
-        //    player.Play();
-        //}
-
+        #endregion
     }
 }
