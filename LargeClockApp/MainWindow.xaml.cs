@@ -26,38 +26,37 @@ namespace LargeClockApp
 
         public string customColor;
 
+        private DispatcherTimer alertTimer;
+
         public MainWindow()
         {
             InitializeComponent();
 
             // update clock format
             UpdateClockFormat();
+            UpdateAlarmSound();
             UpdateTextColor();
             UpdateBgColor();
             UpdateTextSize();
+            UpdateFontStye();
 
             DisplayClock();
 
 
-
+            alertTimer = new DispatcherTimer();
+            alertTimer.Tick += new EventHandler(PlayAlarm_Tick);
+            alertTimer.Interval = new TimeSpan(0, repeatinterval, 0);
 
         }
 
-        private void SetRepeatingAlarm()
+        private void StartRepeatingAlarm()
         {
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(PlayAlarm_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, repeatinterval, 0);
+            alertTimer.Start();
+        }
 
-            if (IsAlarmEnabled)
-            {
-                dispatcherTimer.Start();
-
-            }
-            else
-            {
-                dispatcherTimer.Stop();
-            }
+        private void StopRepeatingAlarm()
+        {
+            alertTimer.Stop();
         }
 
 
@@ -138,27 +137,27 @@ namespace LargeClockApp
             switch (backgroundColor)
             {
                 case "Transparent":
-                    clockLabel.Background = new SolidColorBrush(Colors.Transparent);
+                    ClockGrid.Background = new SolidColorBrush(Colors.Transparent);
                     TranseparentBg.IsChecked = true;
                     break;
                 case "Black":
-                    clockLabel.Background = Brushes.Black;
+                    ClockGrid.Background = Brushes.Black;
                     BlackBg.IsChecked = true;
                     break;
                 case "Yellow":
-                    clockLabel.Background = Brushes.LightGoldenrodYellow;
+                    ClockGrid.Background = Brushes.LightGoldenrodYellow;
                     YellowBg.IsChecked = true;
                     break;
                 case "White":
-                    clockLabel.Background = Brushes.White;
+                    ClockGrid.Background = Brushes.White;
                     WhiteBg.IsChecked = true;
                     break;
                 case "Pink":
-                    clockLabel.Background = Brushes.Pink;
+                    ClockGrid.Background = Brushes.Pink;
                     PinkBg.IsChecked = true;
                     break;
                 case "Custom":
-                    clockLabel.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomeBgColor));
+                    ClockGrid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomeBgColor));
                     CustomBg.IsChecked = true;
                     break;
             }
@@ -179,6 +178,7 @@ namespace LargeClockApp
                 case "TextSize100":
                     clockLabel.FontSize = 100;
                     TextSize100.IsChecked = true;
+
                     break;
                 case "TextSize120":
                     clockLabel.FontSize = 120;
@@ -259,10 +259,72 @@ namespace LargeClockApp
                     break;
             }
 
-            // set alarm
-            SetRepeatingAlarm();
+            // enable/disable alarm
+            if (IsAlarmEnabled)
+            {
+                StartRepeatingAlarm();
+            }
+            else
+            {
+                StopRepeatingAlarm();
+            }
 
         }
+
+        private void UpdateAlarmSound()
+        {
+            string savedSound = ClockSettings.Default.SetAlarmSound;
+
+            switch (savedSound)
+            {
+                case "quack.wav":
+                    QuackSound.IsChecked = true;
+                    break;
+                case "ahahah.wav":
+                    AhSound.IsChecked = true;
+                    break;
+            }
+        }
+
+        public void UpdateFontStye(string fontStyle = "")
+        {
+            if (fontStyle == "")
+            {
+                fontStyle = ClockSettings.Default.FontType;
+            }
+
+            clockLabel.FontFamily = new FontFamily(fontStyle);
+
+        }
+
+
+        private void SetAlarmSound_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem selectedSound = sender as MenuItem;
+
+            QuackSound.IsChecked = false;
+            AhSound.IsChecked = false;
+
+            switch (selectedSound.Name)
+            {
+                case "QuackSound":
+                    QuackSound.IsChecked = true;
+                    ClockSettings.Default.SetAlarmSound = "quack.wav";
+                    break;
+                case "AhSound":
+                    AhSound.IsChecked = true;
+                    ClockSettings.Default.SetAlarmSound = "ahahah.wav";
+                    break;
+            }
+
+
+            ClockSettings.Default.Save();
+
+
+            UpdateAlarmSound();
+        }
+
+
 
         private void ChangeTextColor_Click(object sender, RoutedEventArgs e)
         {
@@ -343,20 +405,34 @@ namespace LargeClockApp
             UpdateTextSize();
         }
 
+        private void CustomFont_Click(object sender, RoutedEventArgs e)
+        {
+            CustomFontWindow customFont = new CustomFontWindow();
+
+            customFont.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            customFont.Owner = this;
+            customFont.Show();
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
 
+
+
         #region Sound Effects
         private void PlayAlarm_Tick(object sender, EventArgs e)
         {
-            string audioSource = "./AudioResources/Quack.wav";
-            SoundPlayer player = new SoundPlayer(audioSource);
+            string audioSource = ClockSettings.Default.SetAlarmSound;
+            SoundPlayer player = new SoundPlayer($"./AudioResources/{audioSource}");
             player.Play();
         }
 
+
         #endregion
+
+
     }
 }

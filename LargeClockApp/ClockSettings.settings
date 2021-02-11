@@ -20,5 +20,11 @@
     <Setting Name="CustomeBgColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">#FF000000</Value>
     </Setting>
+    <Setting Name="SetAlarmSound" Type="System.String" Scope="User">
+      <Value Profile="(Default)">quack.wav</Value>
+    </Setting>
+    <Setting Name="FontType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Calibri</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

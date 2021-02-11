@@ -94,5 +94,29 @@ namespace LargeClockApp {
                 this["CustomeBgColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("quack.wav")]
+        public string SetAlarmSound {
+            get {
+                return ((string)(this["SetAlarmSound"]));
+            }
+            set {
+                this["SetAlarmSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Calibri")]
+        public string FontType {
+            get {
+                return ((string)(this["FontType"]));
+            }
+            set {
+                this["FontType"] = value;
+            }
+        }
     }
 }

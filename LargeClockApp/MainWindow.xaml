@@ -11,10 +11,18 @@
         Topmost="True" 
         Background="Transparent"
         MouseDown="Window_MouseDown" 
-        Height="200" Width="800">
-    <StackPanel>
+        x:Name="ClockWindow"
+        SizeToContent="WidthAndHeight" >
+
+    <Grid x:Name="ClockGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
         <Label x:Name="clockLabel" Content="00:00:00 TT" FontSize="100" FontFamily="Calibri" Foreground="Black" FontWeight="Bold"
-                   HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent">
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"
+                    Grid.Row="0">
             <Label.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Clock Format">
@@ -26,6 +34,10 @@
                         <MenuItem x:Name="T15Mins" Header="15 Mins" Click="ChangeAlarmTime_Click" />
                         <MenuItem x:Name="T20Mins" Header="20 Mins" Click="ChangeAlarmTime_Click" />
                         <MenuItem x:Name="DisabledAlarm" Header="Disabled" Click="ChangeAlarmTime_Click" IsChecked="True" />
+                    </MenuItem>
+                    <MenuItem Header="Alarm Sound" >
+                        <MenuItem x:Name="QuackSound" Header="Quack" Click="SetAlarmSound_Click" />
+                        <MenuItem x:Name="AhSound" Header="AhAhAh" Click="SetAlarmSound_Click" />
                     </MenuItem>
                     <MenuItem x:Name="TextColorMenu" Header="Text Color" >
                         <MenuItem x:Name="BlackText" Header="Black" Click="ChangeTextColor_Click"/>
@@ -50,9 +62,33 @@
                         <MenuItem x:Name="TextSize120" Header="120%" Click="TextSizeChange_Click" />
                         <MenuItem x:Name="TextSize150" Header="150%" Click="TextSizeChange_Click" />
                     </MenuItem>
+                    <MenuItem Header="Customize Font" Click="CustomFont_Click"/>
                     <MenuItem Header="Exit" Click="Close_Click"/>
                 </ContextMenu>
             </Label.ContextMenu>
         </Label>
-    </StackPanel>
+
+
+        <!--<TextBlock x:Name="StoryBoardAlert" Grid.Row="1" FontSize="18" FontStyle="Oblique" VerticalAlignment="Center" Background="Transparent">
+            <TextBlock.RenderTransform>
+                <TranslateTransform x:Name="Translate"/>
+            </TextBlock.RenderTransform>
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="900" To="-900" 
+                                             Storyboard.TargetName="Translate"
+                                             Storyboard.TargetProperty="X"
+                                             RepeatBehavior="Forever"
+                                             Duration="0:0:15" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+            
+            Test string 
+            
+        </TextBlock>-->
+    </Grid>
 </Window>
