@@ -2,6 +2,7 @@
 using System.Drawing.Text;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace LargeClockApp
 {
@@ -20,6 +21,7 @@ namespace LargeClockApp
         private void LoadFontList()
         {
             List<string> fontList = new List<string>();
+
             using (InstalledFontCollection col = new InstalledFontCollection())
             {
                 foreach (var f in col.Families)

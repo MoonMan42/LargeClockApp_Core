@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Custom font" Height="450" Width="400">
     <Grid>
-        <ListView x:Name="FontList" MouseDoubleClick="SelectFont_Click"/>
+        <ListView x:Name="FontList"   MouseDoubleClick="SelectFont_Click"/>
     </Grid>
 </Window>
