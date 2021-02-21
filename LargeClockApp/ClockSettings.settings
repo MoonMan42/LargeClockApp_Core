@@ -11,9 +11,6 @@
     <Setting Name="BackgroundColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Transparent</Value>
     </Setting>
-    <Setting Name="TextSize" Type="System.String" Scope="User">
-      <Value Profile="(Default)">TextSize100</Value>
-    </Setting>
     <Setting Name="CustomTextColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">#FFFFFFFF</Value>
     </Setting>
@@ -25,6 +22,9 @@
     </Setting>
     <Setting Name="FontType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Calibri</Value>
+    </Setting>
+    <Setting Name="FontSize" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
   </Settings>
 </SettingsFile>

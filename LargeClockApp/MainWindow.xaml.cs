@@ -19,7 +19,6 @@ namespace LargeClockApp
 
         private string textColor;
         private string backgroundColor;
-        private string textSize;
 
         private int repeatinterval = 10; // minutes
         private bool IsAlarmEnabled = false;
@@ -164,31 +163,9 @@ namespace LargeClockApp
 
         }
 
-        private void UpdateTextSize()
+        public void UpdateTextSize(double clockFontSize = 0)
         {
-            textSize = ClockSettings.Default.TextSize;
-
-            switch (textSize)
-            {
-
-                case "TextSize80":
-                    clockLabel.FontSize = 80;
-                    TextSize80.IsChecked = true;
-                    break;
-                case "TextSize100":
-                    clockLabel.FontSize = 100;
-                    TextSize100.IsChecked = true;
-
-                    break;
-                case "TextSize120":
-                    clockLabel.FontSize = 120;
-                    TextSize120.IsChecked = true;
-                    break;
-                case "TextSize150":
-                    clockLabel.FontSize = 150;
-                    TextSize150.IsChecked = true;
-                    break;
-            }
+            clockLabel.FontSize = clockFontSize != 0 ? clockFontSize : ClockSettings.Default.FontSize;
         }
 
         /// <summary>
@@ -388,21 +365,6 @@ namespace LargeClockApp
 
             UpdateBgColor();
 
-        }
-
-        private void TextSizeChange_Click(object sender, RoutedEventArgs e)
-        {
-            MenuItem textSize = sender as MenuItem;
-
-            TextSize80.IsChecked = false;
-            TextSize100.IsChecked = false;
-            TextSize120.IsChecked = false;
-            TextSize150.IsChecked = false;
-
-            ClockSettings.Default.TextSize = textSize.Name;
-            ClockSettings.Default.Save();
-
-            UpdateTextSize();
         }
 
         private void CustomFont_Click(object sender, RoutedEventArgs e)

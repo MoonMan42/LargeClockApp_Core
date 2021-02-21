@@ -61,18 +61,6 @@ namespace LargeClockApp {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TextSize100")]
-        public string TextSize {
-            get {
-                return ((string)(this["TextSize"]));
-            }
-            set {
-                this["TextSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FFFFFFFF")]
         public string CustomTextColor {
             get {
@@ -116,6 +104,18 @@ namespace LargeClockApp {
             }
             set {
                 this["FontType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double FontSize {
+            get {
+                return ((double)(this["FontSize"]));
+            }
+            set {
+                this["FontSize"] = value;
             }
         }
     }
