@@ -29,7 +29,7 @@ namespace LargeClockApp
                 ClockSettings.Default.FontType = FontList.SelectedItem.ToString();
             }
 
-            ClockSettings.Default.FontSize = FontSizeSlider.Value;
+            ClockSettings.Default.ClockSize = FontSizeSlider.Value;
             ClockSettings.Default.Save();
 
 
@@ -54,7 +54,7 @@ namespace LargeClockApp
 
         private void LoadFontSize()
         {
-            FontSizeSlider.Value = ClockSettings.Default.FontSize;
+            FontSizeSlider.Value = ClockSettings.Default.ClockSize;
         }
 
 

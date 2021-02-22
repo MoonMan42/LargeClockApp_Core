@@ -23,8 +23,14 @@
     <Setting Name="FontType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Calibri</Value>
     </Setting>
-    <Setting Name="FontSize" Type="System.Double" Scope="User">
+    <Setting Name="ClockSize" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="SavedStoryBoard" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test Message :)</Value>
+    </Setting>
+    <Setting Name="IsStoryBoardVisible" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Visible</Value>
     </Setting>
   </Settings>
 </SettingsFile>

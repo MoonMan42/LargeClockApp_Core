@@ -6,6 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:LargeClockApp"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Color Picker" Height="340" Width="250">
     <Grid Background="WhiteSmoke">
         <Grid.ColumnDefinitions>

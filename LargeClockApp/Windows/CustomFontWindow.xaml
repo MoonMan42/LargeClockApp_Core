@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LargeClockApp"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Customize Font" 
         Height="450" Width="400">
 
@@ -24,8 +25,7 @@
             TickPlacement="BottomRight"                 
             ValueChanged="FontSizeSlider_ValueChanged"
             Grid.Column="1" Grid.Row="0"  Margin="5"
-            VerticalAlignment="Center" />
-        
+            VerticalAlignment="Center" />    
       
 
         <ListView x:Name="FontList" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"   MouseDoubleClick="SelectFont_Click" Margin="5"/>

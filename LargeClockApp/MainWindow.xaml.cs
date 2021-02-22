@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LargeClockApp.Windows;
+using System;
 using System.Collections.Generic;
 using System.Media;
 using System.Windows;
@@ -39,6 +40,7 @@ namespace LargeClockApp
             UpdateTextSize();
             UpdateFontStye();
 
+
             DisplayClock();
 
 
@@ -58,6 +60,19 @@ namespace LargeClockApp
             alertTimer.Stop();
         }
 
+
+        /// <summary>
+        /// Move the clock on Mouse Down event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
 
 
         /// <summary>
@@ -103,26 +118,32 @@ namespace LargeClockApp
             {
                 case "Black":
                     clockLabel.Foreground = Brushes.Black;
+                    StoryBoardAlert.Foreground = Brushes.Black;
                     BlackText.IsChecked = true;
                     break;
                 case "Red":
                     clockLabel.Foreground = Brushes.Red;
+                    StoryBoardAlert.Foreground = Brushes.Red;
                     RedText.IsChecked = true;
                     break;
                 case "Green":
                     clockLabel.Foreground = Brushes.GreenYellow;
+                    StoryBoardAlert.Foreground = Brushes.GreenYellow;
                     GreenText.IsChecked = true;
                     break;
                 case "Blue":
                     clockLabel.Foreground = Brushes.DeepSkyBlue;
+                    StoryBoardAlert.Foreground = Brushes.DeepSkyBlue;
                     BlueText.IsChecked = true;
                     break;
                 case "Pink":
                     clockLabel.Foreground = Brushes.Pink;
+                    StoryBoardAlert.Foreground = Brushes.Pink;
                     PinkText.IsChecked = true;
                     break;
                 case "Custom":
                     clockLabel.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomTextColor));
+                    StoryBoardAlert.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClockSettings.Default.CustomTextColor)); ;
                     CustomText.IsChecked = true;
                     break;
 
@@ -165,20 +186,8 @@ namespace LargeClockApp
 
         public void UpdateTextSize(double clockFontSize = 0)
         {
-            clockLabel.FontSize = clockFontSize != 0 ? clockFontSize : ClockSettings.Default.FontSize;
-        }
-
-        /// <summary>
-        /// Move the clock on Mouse Down event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
+            clockLabel.FontSize = clockFontSize != 0 ? clockFontSize : ClockSettings.Default.ClockSize;
+            StoryBoardAlert.FontSize = clockFontSize != 0 ? clockFontSize * 0.25 : ClockSettings.Default.ClockSize * 0.25;
         }
 
         /// <summary>
@@ -376,6 +385,14 @@ namespace LargeClockApp
             customFont.Show();
         }
 
+        private void CustomMessage_Click(object sender, RoutedEventArgs e)
+        {
+            CustomMessageWindow customMessage = new CustomMessageWindow();
+            customMessage.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            customMessage.Owner = this;
+            customMessage.Show();
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -391,6 +408,7 @@ namespace LargeClockApp
             SoundPlayer player = new SoundPlayer($"./AudioResources/{audioSource}");
             player.Play();
         }
+
 
 
         #endregion

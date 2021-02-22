@@ -110,12 +110,36 @@ namespace LargeClockApp {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double FontSize {
+        public double ClockSize {
             get {
-                return ((double)(this["FontSize"]));
+                return ((double)(this["ClockSize"]));
             }
             set {
-                this["FontSize"] = value;
+                this["ClockSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Test Message :)")]
+        public string SavedStoryBoard {
+            get {
+                return ((string)(this["SavedStoryBoard"]));
+            }
+            set {
+                this["SavedStoryBoard"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Visible")]
+        public string IsStoryBoardVisible {
+            get {
+                return ((string)(this["IsStoryBoardVisible"]));
+            }
+            set {
+                this["IsStoryBoardVisible"] = value;
             }
         }
     }
